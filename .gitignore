@@ -35,3 +35,11 @@ bglinking/resources/output/*.txt
 !bglinking/resources/topics-and-qrels/topics.sample.txt
 !bglinking/resources/topics-and-qrels/qrels.sample.txt
 !bglinking/resources/output/sample.txt
+
+# exceptions for currently relevant resources which are a hell to generate
+!bglinking/resources/topics-and-qrels/topics.backgroundlinking20.txt
+!bglinking/resources/topics-and-qrels/qrels.backgroundlinking20.txt
+!bglinking/resources/candidates/candidates.backgroundlinking20.txt
+!bglinking/resources/candidates/candidates_filtered.backgroundlinking20.txt
+!bglinking/resources/db/entity_database_20.db
+!bglinking/resources/candidates/candidates_final.backgroundlinking20.txt
