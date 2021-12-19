@@ -9,7 +9,6 @@ from typing import Callable
 
 import gensim
 import numpy as np
-from str_to_dict import turn_into_dict
 from bs4 import BeautifulSoup
 from pyserini import analysis
 
@@ -78,49 +77,49 @@ def standardize_dict(dictionary):
     return dictionary
 
 
-def get_article_text(raw_doc, stemming=False) -> str:
-    """Retrieve actual text from raw document (as obtained via Pyserini)."""
-    res = turn_into_dict(raw_doc)
-    contents = res["contents"]  # list of dictrionaries
-    text = ""
+# def get_article_text(raw_doc, stemming=False) -> str:
+#     """Retrieve actual text from raw document (as obtained via Pyserini)."""
+#     res = turn_into_dict(raw_doc)
+#     contents = res["contents"]  # list of dictrionaries
+#     text = ""
 
-    for content in contents:
-        try:
-            if "subtype" in content.keys() and content["subtype"] == "paragraph":
-                text += content["content"] + "\n"
-        except AttributeError:
-            continue
+#     for content in contents:
+#         try:
+#             if "subtype" in content.keys() and content["subtype"] == "paragraph":
+#                 text += content["content"] + "\n"
+#         except AttributeError:
+#             continue
 
-    soup = BeautifulSoup(text, "html.parser")
-    return soup.get_text(" ", strip=True)
-
-
-def get_article_title(raw_doc, stemming=False) -> str:
-    res = turn_into_dict(raw_doc)
-    return res["title"]
+#     soup = BeautifulSoup(text, "html.parser")
+#     return soup.get_text(" ", strip=True)
 
 
-def show_article(
-    index_utils,
-    docid,
-    relevance="unknown",
-    print_article=True,
-    n_chars=500,
-    return_text=False,
-):
-    raw_doc = index_utils.doc_raw(docid)
-    text = get_article_text(raw_doc, stemming=False)
-    title = get_article_title(raw_doc, stemming=False)
-    if print_article:
-        print("---------------------------------")
-        print(f"docid: {docid}\n")
-        print(f"relevance: {relevance}\n")
-        print(f"Title: {title}\n")
-        print(f"Text: \n{text[:n_chars]}...")
-        print("---------------------------------")
+# def get_article_title(raw_doc, stemming=False) -> str:
+#     res = turn_into_dict(raw_doc)
+#     return res["title"]
 
-    if return_text:
-        return text
+
+# def show_article(
+#     index_utils,
+#     docid,
+#     relevance="unknown",
+#     print_article=True,
+#     n_chars=500,
+#     return_text=False,
+# ):
+#     raw_doc = index_utils.doc_raw(docid)
+#     text = get_article_text(raw_doc, stemming=False)
+#     title = get_article_title(raw_doc, stemming=False)
+#     if print_article:
+#         print("---------------------------------")
+#         print(f"docid: {docid}\n")
+#         print(f"relevance: {relevance}\n")
+#         print(f"Title: {title}\n")
+#         print(f"Text: \n{text[:n_chars]}...")
+#         print("---------------------------------")
+
+#     if return_text:
+#         return text
 
 
 def is_valid_article(raw_doc, score):

@@ -123,9 +123,19 @@ if __name__ == "__main__":
                     "text": content,
                     "spans": [],
                 }
-                rel_request = requests.post(
+                print("Content:")
+                print(content)
+                res = requests.post(
                     "{}".format(IP_ADDRESS), json=document
-                ).json()
+                )
+                print("Response:")
+                print(res)
+                rel_request = res.json()
+                print("JSON:")
+                print(rel_request)
+                # rel_request = requests.post(
+                #     "{}".format(IP_ADDRESS), json=document
+                # ).json()
                 location_entities[i] = [
                     (entity[3], entity[5]) for entity in rel_request
                 ]
