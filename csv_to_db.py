@@ -3,7 +3,7 @@ import sqlite3
 
 project_root = 'C:/Users/mika/Documents/Radboud/Courses/Master_Year_1/Information_Retrieval/Project/background-linking-IR'
 csv_in = "C:/Users/mika/Documents/Radboud/Courses/Master_Year_1/Information_Retrieval/Project/entity-doc/entity-doc.csv"
-candidates = "{}/bglinking/resources/candidates/candidates.backgroundlinking20.txt".format(project_root)
+#candidates = "{}/bglinking/resources/candidates/candidates.backgroundlinking20.txt".format(project_root)
 topics = "{}/bglinking/resources/topics-and-qrels/topics.backgroundlinking20.txt".format(project_root)
 db = "{}/bglinking/resources/db/entity_database_20.db".format(project_root)
 
@@ -36,18 +36,18 @@ conn = sqlite3.connect(db)
 cursor = conn.cursor()
 
 # Create database
-# cursor.execute(
-#     """CREATE TABLE "entities" (
-#     "id"	    integer,
-#     "pos"	    integer,
-#     "len"	    integer,
-#     "ref_text"	text,
-#     "entity"	text,
-#     "type"	    text,
-#     "docid"	    text,
-#     PRIMARY KEY("id"))"""
-# )
-# conn.commit()
+cursor.execute(
+    """CREATE TABLE "entities" (
+    "id"	    integer,
+    "pos"	    integer,
+    "len"	    integer,
+    "ref_text"	text,
+    "entity"	text,
+    "type"	    text,
+    "docid"	    text,
+    PRIMARY KEY("id"))"""
+)
+conn.commit()
 
 docid_count = 0
 with open (csv_in, 'r', encoding='Latin1') as f:
